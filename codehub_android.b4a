@@ -9,9 +9,9 @@ NumberOfModules=1
 Version=9.9
 @EndOfDesignText@
 #Region  Project Attributes 
-	#ApplicationLabel: B4A Example
+	#ApplicationLabel: کد هاب
 	#VersionCode: 1
-	#VersionName: 
+	#VersionName: v0.5
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
