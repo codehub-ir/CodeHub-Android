@@ -37,10 +37,11 @@ FileGroup8=Fonts
 FileGroup9=Fonts
 Group=Default Group
 Library1=core
+Library2=clipboard
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
 Module1=Starter
 NumberOfFiles=18
-NumberOfLibraries=1
+NumberOfLibraries=2
 NumberOfModules=1
 Version=9.9
 @EndOfDesignText@
@@ -55,7 +56,7 @@ Version=9.9
 
 #Region  Activity Attributes 
 	#FullScreen: False
-	#IncludeTitle: True
+	#IncludeTitle: False
 #End Region
 
 Sub Process_Globals
@@ -68,12 +69,20 @@ Sub Globals
 	'These global variables will be redeclared each time the activity is created.
 	'These variables can only be accessed from this module.
 
+	Private btn_submit As Button
+	Private edt_detail As EditText
+	Private edt_script As EditText
+	Private edt_title As EditText
+	Private lstv_language As ListView
+	Private ac_language As AutoCompleteEditText
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
 	'Do not forget to load the layout file created with the visual designer. For example:
-	'Activity.LoadLayout("Layout1")
-
+	Activity.LoadLayout("light_layout_v05")
+	Dim languages () As String
+	languages = Array As String ("python", "php", "go", "html", "java")
+	ac_language.SetItems(languages)
 End Sub
 
 Sub Activity_Resume
@@ -82,4 +91,28 @@ End Sub
 
 Sub Activity_Pause (UserClosed As Boolean)
 
+End Sub
+
+Sub Send_Snippet
+	' Sending the snippet
+	' Returning the link
+	Dim address As String
+	address = ""
+	Return address
+End Sub
+
+Sub btn_submit_Click
+	If edt_title.Text == "" Or edt_script.Text == "" Then
+		ToastMessageShow("لطفا هر دو فیلد عنوان و اسکریپت را پر کنید", False)
+	Else
+		ToastMessageShow("درخواست شما در حال انجام است", False)
+		Dim snippet_clip As BClipboard
+		Dim snippet_link As String
+		If Send_Snippet <> "" Then
+			snippet_link = Send_Snippet
+			snippet_clip.setText(snippet_link)
+		Else
+			ToastMessageShow("خطا در برقراری ارتباط", False)
+		End If
+	End If
 End Sub
