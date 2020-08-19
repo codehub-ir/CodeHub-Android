@@ -336,11 +336,9 @@ public class main extends Activity implements B4AActivity{
     }
 
 public anywheresoftware.b4a.keywords.Common __c = null;
-public anywheresoftware.b4a.objects.ButtonWrapper _btn_submit = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _edt_detail = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _edt_script = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _edt_title = null;
-public anywheresoftware.b4a.objects.ListViewWrapper _lstv_language = null;
 public anywheresoftware.b4a.objects.AutoCompleteEditTextWrapper _ac_language = null;
 public b4a.example.starter _starter = null;
 public b4a.example.httputils2service _httputils2service = null;
@@ -351,60 +349,83 @@ vis = vis | (main.mostCurrent != null);
 return vis;}
 public static String  _activity_create(boolean _firsttime) throws Exception{
 String[] _languages = null;
- //BA.debugLineNum = 33;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 35;BA.debugLine="Activity.LoadLayout(\"light_layout_v05\")";
+ //BA.debugLineNum = 27;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 29;BA.debugLine="Activity.LoadLayout(\"light_layout_v05\")";
 mostCurrent._activity.LoadLayout("light_layout_v05",mostCurrent.activityBA);
- //BA.debugLineNum = 36;BA.debugLine="Dim languages () As String";
+ //BA.debugLineNum = 30;BA.debugLine="Dim languages () As String";
 _languages = new String[(int) (0)];
 java.util.Arrays.fill(_languages,"");
- //BA.debugLineNum = 37;BA.debugLine="languages = Array As String (\"python\", \"php\", \"go";
+ //BA.debugLineNum = 31;BA.debugLine="languages = Array As String (\"python\", \"php\", \"go";
 _languages = new String[]{"python","php","go","html","java"};
- //BA.debugLineNum = 38;BA.debugLine="ac_language.SetItems(languages)";
+ //BA.debugLineNum = 32;BA.debugLine="ac_language.SetItems(languages)";
 mostCurrent._ac_language.SetItems(processBA,anywheresoftware.b4a.keywords.Common.ArrayToList(_languages));
- //BA.debugLineNum = 39;BA.debugLine="End Sub";
+ //BA.debugLineNum = 33;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 45;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 47;BA.debugLine="End Sub";
+ //BA.debugLineNum = 39;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 41;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 41;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 43;BA.debugLine="End Sub";
+ //BA.debugLineNum = 35;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 37;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btn_clear_click() throws Exception{
+ //BA.debugLineNum = 69;BA.debugLine="Sub btn_clear_Click";
+ //BA.debugLineNum = 70;BA.debugLine="Clearify";
+_clearify();
+ //BA.debugLineNum = 71;BA.debugLine="ToastMessageShow(\"فیلد ها خالی شد\", False)";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("فیلد ها خالی شد"),anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 72;BA.debugLine="End Sub";
+return "";
+}
+public static String  _btn_github_click() throws Exception{
+ //BA.debugLineNum = 74;BA.debugLine="Sub btn_github_Click";
+ //BA.debugLineNum = 76;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btn_submit_click() throws Exception{
 b4a.util.BClipboard _snippet_clip = null;
- //BA.debugLineNum = 49;BA.debugLine="Sub btn_submit_Click";
- //BA.debugLineNum = 50;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
+ //BA.debugLineNum = 43;BA.debugLine="Sub btn_submit_Click";
+ //BA.debugLineNum = 44;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
 if ((mostCurrent._edt_title.getText()).equals("") || (mostCurrent._edt_script.getText()).equals("") || (mostCurrent._ac_language.getText()).equals("")) { 
- //BA.debugLineNum = 51;BA.debugLine="ToastMessageShow(\"تمام فیلد ها را پر کنید\", Fals";
+ //BA.debugLineNum = 45;BA.debugLine="ToastMessageShow(\"تمام فیلد ها را پر کنید\", Fals";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("تمام فیلد ها را پر کنید"),anywheresoftware.b4a.keywords.Common.False);
  }else {
- //BA.debugLineNum = 53;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
+ //BA.debugLineNum = 47;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("درخواست شما در حال انجام است"),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 54;BA.debugLine="Dim snippet_clip As BClipboard";
+ //BA.debugLineNum = 48;BA.debugLine="Dim snippet_clip As BClipboard";
 _snippet_clip = new b4a.util.BClipboard();
  };
- //BA.debugLineNum = 61;BA.debugLine="End Sub";
+ //BA.debugLineNum = 55;BA.debugLine="End Sub";
+return "";
+}
+public static String  _clearify() throws Exception{
+ //BA.debugLineNum = 57;BA.debugLine="Sub Clearify";
+ //BA.debugLineNum = 58;BA.debugLine="edt_title.Text = \"\"";
+mostCurrent._edt_title.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 59;BA.debugLine="edt_detail.Text = \"\"";
+mostCurrent._edt_detail.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 60;BA.debugLine="edt_script.Text = \"\"";
+mostCurrent._edt_script.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 61;BA.debugLine="ac_language.Text = \"\"";
+mostCurrent._ac_language.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 67;BA.debugLine="End Sub";
 return "";
 }
 public static String  _globals() throws Exception{
- //BA.debugLineNum = 21;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 25;BA.debugLine="Private btn_submit As Button";
-mostCurrent._btn_submit = new anywheresoftware.b4a.objects.ButtonWrapper();
- //BA.debugLineNum = 26;BA.debugLine="Private edt_detail As EditText";
+ //BA.debugLineNum = 20;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 21;BA.debugLine="Private edt_detail As EditText";
 mostCurrent._edt_detail = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 27;BA.debugLine="Private edt_script As EditText";
+ //BA.debugLineNum = 22;BA.debugLine="Private edt_script As EditText";
 mostCurrent._edt_script = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 28;BA.debugLine="Private edt_title As EditText";
+ //BA.debugLineNum = 23;BA.debugLine="Private edt_title As EditText";
 mostCurrent._edt_title = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 29;BA.debugLine="Private lstv_language As ListView";
-mostCurrent._lstv_language = new anywheresoftware.b4a.objects.ListViewWrapper();
- //BA.debugLineNum = 30;BA.debugLine="Private ac_language As AutoCompleteEditText";
+ //BA.debugLineNum = 24;BA.debugLine="Private ac_language As AutoCompleteEditText";
 mostCurrent._ac_language = new anywheresoftware.b4a.objects.AutoCompleteEditTextWrapper();
- //BA.debugLineNum = 31;BA.debugLine="End Sub";
+ //BA.debugLineNum = 25;BA.debugLine="End Sub";
 return "";
 }
 
@@ -422,8 +443,8 @@ httputils2service._process_globals();
 		}
     }
 }public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 15;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 19;BA.debugLine="End Sub";
+ //BA.debugLineNum = 14;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 18;BA.debugLine="End Sub";
 return "";
 }
 }
