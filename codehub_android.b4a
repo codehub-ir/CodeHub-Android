@@ -47,7 +47,6 @@ NumberOfLibraries=4
 NumberOfModules=1
 Version=9.9
 @EndOfDesignText@
-#Region  Project Attributes 
 	#ApplicationLabel: کد هاب
 	#VersionCode: 1
 	#VersionName: v0.5
@@ -68,14 +67,9 @@ Sub Process_Globals
 End Sub
 
 Sub Globals
-	'These global variables will be redeclared each time the activity is created.
-	'These variables can only be accessed from this module.
-
-	Private btn_submit As Button
 	Private edt_detail As EditText
 	Private edt_script As EditText
 	Private edt_title As EditText
-	Private lstv_language As ListView
 	Private ac_language As AutoCompleteEditText
 End Sub
 
@@ -107,4 +101,25 @@ Sub btn_submit_Click
 		' Retriveing back the link in snippet_clip.settext()
 		
 	End If
+End Sub
+
+Sub Clearify
+	edt_title.Text = ""
+	edt_detail.Text = ""
+	edt_script.Text = ""
+	ac_language.Text = ""
+'	In here a bug is living..
+'	Dim view As Object
+'	For Each view In edittext_views
+'		view
+'	Next
+End Sub
+
+Sub btn_clear_Click
+	Clearify
+	ToastMessageShow("فیلد ها خالی شد", False)
+End Sub
+
+Sub btn_github_Click
+	' Openning the github repo of CodeHub on default browser
 End Sub
