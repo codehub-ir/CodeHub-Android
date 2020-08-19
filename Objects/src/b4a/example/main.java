@@ -34,7 +34,7 @@ public class main extends Activity implements B4AActivity{
 		super.onCreate(savedInstanceState);
         mostCurrent = this;
 		if (processBA == null) {
-			processBA = new anywheresoftware.b4a.ShellBA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.main");
+			processBA = new BA(this.getApplicationContext(), null, null, "b4a.example", "b4a.example.main");
 			processBA.loadHtSubs(this.getClass());
 	        float deviceScale = getApplicationContext().getResources().getDisplayMetrics().density;
 	        BALayout.setDeviceScale(deviceScale);
@@ -335,47 +335,6 @@ public class main extends Activity implements B4AActivity{
             
     }
 
-
-
-public static void initializeProcessGlobals() {
-    
-    if (main.processGlobalsRun == false) {
-	    main.processGlobalsRun = true;
-		try {
-		        		
-        } catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-    }
-}
-public static boolean isAnyActivityVisible() {
-    boolean vis = false;
-vis = vis | (main.mostCurrent != null);
-return vis;}
-
-private static BA killProgramHelper(BA ba) {
-    if (ba == null)
-        return null;
-    anywheresoftware.b4a.BA.SharedProcessBA sharedProcessBA = ba.sharedProcessBA;
-    if (sharedProcessBA == null || sharedProcessBA.activityBA == null)
-        return null;
-    return sharedProcessBA.activityBA.get();
-}
-public static void killProgram() {
-     {
-            Activity __a = null;
-            if (main.previousOne != null) {
-				__a = main.previousOne.get();
-			}
-            else {
-                BA ba = killProgramHelper(main.mostCurrent == null ? null : main.mostCurrent.processBA);
-                if (ba != null) __a = ba.activity;
-            }
-            if (__a != null)
-				__a.finish();}
-
-BA.applicationContext.stopService(new android.content.Intent(BA.applicationContext, starter.class));
-}
 public anywheresoftware.b4a.keywords.Common __c = null;
 public anywheresoftware.b4a.objects.ButtonWrapper _btn_submit = null;
 public anywheresoftware.b4a.objects.EditTextWrapper _edt_detail = null;
@@ -384,109 +343,87 @@ public anywheresoftware.b4a.objects.EditTextWrapper _edt_title = null;
 public anywheresoftware.b4a.objects.ListViewWrapper _lstv_language = null;
 public anywheresoftware.b4a.objects.AutoCompleteEditTextWrapper _ac_language = null;
 public b4a.example.starter _starter = null;
+public b4a.example.httputils2service _httputils2service = null;
+
+public static boolean isAnyActivityVisible() {
+    boolean vis = false;
+vis = vis | (main.mostCurrent != null);
+return vis;}
 public static String  _activity_create(boolean _firsttime) throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_create", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_create", new Object[] {_firsttime}));}
 String[] _languages = null;
-RDebugUtils.currentLine=131072;
- //BA.debugLineNum = 131072;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
-RDebugUtils.currentLine=131074;
- //BA.debugLineNum = 131074;BA.debugLine="Activity.LoadLayout(\"light_layout_v05\")";
+ //BA.debugLineNum = 33;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 35;BA.debugLine="Activity.LoadLayout(\"light_layout_v05\")";
 mostCurrent._activity.LoadLayout("light_layout_v05",mostCurrent.activityBA);
-RDebugUtils.currentLine=131075;
- //BA.debugLineNum = 131075;BA.debugLine="Dim languages () As String";
+ //BA.debugLineNum = 36;BA.debugLine="Dim languages () As String";
 _languages = new String[(int) (0)];
 java.util.Arrays.fill(_languages,"");
-RDebugUtils.currentLine=131076;
- //BA.debugLineNum = 131076;BA.debugLine="languages = Array As String (\"python\", \"php\", \"go";
+ //BA.debugLineNum = 37;BA.debugLine="languages = Array As String (\"python\", \"php\", \"go";
 _languages = new String[]{"python","php","go","html","java"};
-RDebugUtils.currentLine=131077;
- //BA.debugLineNum = 131077;BA.debugLine="ac_language.SetItems(languages)";
+ //BA.debugLineNum = 38;BA.debugLine="ac_language.SetItems(languages)";
 mostCurrent._ac_language.SetItems(processBA,anywheresoftware.b4a.keywords.Common.ArrayToList(_languages));
-RDebugUtils.currentLine=131078;
- //BA.debugLineNum = 131078;BA.debugLine="End Sub";
+ //BA.debugLineNum = 39;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_pause(boolean _userclosed) throws Exception{
-RDebugUtils.currentModule="main";
-RDebugUtils.currentLine=262144;
- //BA.debugLineNum = 262144;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
-RDebugUtils.currentLine=262146;
- //BA.debugLineNum = 262146;BA.debugLine="End Sub";
+ //BA.debugLineNum = 45;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
+ //BA.debugLineNum = 47;BA.debugLine="End Sub";
 return "";
 }
 public static String  _activity_resume() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "activity_resume", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "activity_resume", null));}
-RDebugUtils.currentLine=196608;
- //BA.debugLineNum = 196608;BA.debugLine="Sub Activity_Resume";
-RDebugUtils.currentLine=196610;
- //BA.debugLineNum = 196610;BA.debugLine="End Sub";
+ //BA.debugLineNum = 41;BA.debugLine="Sub Activity_Resume";
+ //BA.debugLineNum = 43;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btn_submit_click() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "btn_submit_click", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "btn_submit_click", null));}
 b4a.util.BClipboard _snippet_clip = null;
-String _snippet_link = "";
-RDebugUtils.currentLine=393216;
- //BA.debugLineNum = 393216;BA.debugLine="Sub btn_submit_Click";
-RDebugUtils.currentLine=393217;
- //BA.debugLineNum = 393217;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
-if ((mostCurrent._edt_title.getText()).equals("") || (mostCurrent._edt_script.getText()).equals("")) { 
-RDebugUtils.currentLine=393218;
- //BA.debugLineNum = 393218;BA.debugLine="ToastMessageShow(\"لطفا هر دو فیلد عنوان و اسکریپ";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("لطفا هر دو فیلد عنوان و اسکریپت را پر کنید"),anywheresoftware.b4a.keywords.Common.False);
+ //BA.debugLineNum = 49;BA.debugLine="Sub btn_submit_Click";
+ //BA.debugLineNum = 50;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
+if ((mostCurrent._edt_title.getText()).equals("") || (mostCurrent._edt_script.getText()).equals("") || (mostCurrent._ac_language.getText()).equals("")) { 
+ //BA.debugLineNum = 51;BA.debugLine="ToastMessageShow(\"تمام فیلد ها را پر کنید\", Fals";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("تمام فیلد ها را پر کنید"),anywheresoftware.b4a.keywords.Common.False);
  }else {
-RDebugUtils.currentLine=393220;
- //BA.debugLineNum = 393220;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
+ //BA.debugLineNum = 53;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("درخواست شما در حال انجام است"),anywheresoftware.b4a.keywords.Common.False);
-RDebugUtils.currentLine=393221;
- //BA.debugLineNum = 393221;BA.debugLine="Dim snippet_clip As BClipboard";
+ //BA.debugLineNum = 54;BA.debugLine="Dim snippet_clip As BClipboard";
 _snippet_clip = new b4a.util.BClipboard();
-RDebugUtils.currentLine=393222;
- //BA.debugLineNum = 393222;BA.debugLine="Dim snippet_link As String";
-_snippet_link = "";
-RDebugUtils.currentLine=393223;
- //BA.debugLineNum = 393223;BA.debugLine="If Send_Snippet <> \"\" Then";
-if ((_send_snippet()).equals("") == false) { 
-RDebugUtils.currentLine=393224;
- //BA.debugLineNum = 393224;BA.debugLine="snippet_link = Send_Snippet";
-_snippet_link = _send_snippet();
-RDebugUtils.currentLine=393225;
- //BA.debugLineNum = 393225;BA.debugLine="snippet_clip.setText(snippet_link)";
-_snippet_clip.setText(mostCurrent.activityBA,_snippet_link);
- }else {
-RDebugUtils.currentLine=393227;
- //BA.debugLineNum = 393227;BA.debugLine="ToastMessageShow(\"خطا در برقراری ارتباط\", False";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("خطا در برقراری ارتباط"),anywheresoftware.b4a.keywords.Common.False);
  };
- };
-RDebugUtils.currentLine=393230;
- //BA.debugLineNum = 393230;BA.debugLine="End Sub";
+ //BA.debugLineNum = 61;BA.debugLine="End Sub";
 return "";
 }
-public static String  _send_snippet() throws Exception{
-RDebugUtils.currentModule="main";
-if (Debug.shouldDelegate(mostCurrent.activityBA, "send_snippet", false))
-	 {return ((String) Debug.delegate(mostCurrent.activityBA, "send_snippet", null));}
-String _test = "";
-RDebugUtils.currentLine=327680;
- //BA.debugLineNum = 327680;BA.debugLine="Sub Send_Snippet";
-RDebugUtils.currentLine=327683;
- //BA.debugLineNum = 327683;BA.debugLine="Dim test As String";
-_test = "";
-RDebugUtils.currentLine=327684;
- //BA.debugLineNum = 327684;BA.debugLine="test = \"\"";
-_test = "";
-RDebugUtils.currentLine=327685;
- //BA.debugLineNum = 327685;BA.debugLine="Return test";
-if (true) return _test;
-RDebugUtils.currentLine=327686;
- //BA.debugLineNum = 327686;BA.debugLine="End Sub";
+public static String  _globals() throws Exception{
+ //BA.debugLineNum = 21;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 25;BA.debugLine="Private btn_submit As Button";
+mostCurrent._btn_submit = new anywheresoftware.b4a.objects.ButtonWrapper();
+ //BA.debugLineNum = 26;BA.debugLine="Private edt_detail As EditText";
+mostCurrent._edt_detail = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 27;BA.debugLine="Private edt_script As EditText";
+mostCurrent._edt_script = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 28;BA.debugLine="Private edt_title As EditText";
+mostCurrent._edt_title = new anywheresoftware.b4a.objects.EditTextWrapper();
+ //BA.debugLineNum = 29;BA.debugLine="Private lstv_language As ListView";
+mostCurrent._lstv_language = new anywheresoftware.b4a.objects.ListViewWrapper();
+ //BA.debugLineNum = 30;BA.debugLine="Private ac_language As AutoCompleteEditText";
+mostCurrent._ac_language = new anywheresoftware.b4a.objects.AutoCompleteEditTextWrapper();
+ //BA.debugLineNum = 31;BA.debugLine="End Sub";
+return "";
+}
+
+public static void initializeProcessGlobals() {
+    
+    if (main.processGlobalsRun == false) {
+	    main.processGlobalsRun = true;
+		try {
+		        main._process_globals();
+starter._process_globals();
+httputils2service._process_globals();
+		
+        } catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+    }
+}public static String  _process_globals() throws Exception{
+ //BA.debugLineNum = 15;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 19;BA.debugLine="End Sub";
 return "";
 }
 }

@@ -13,6 +13,7 @@
 	    android:anyDensity="true"/>
 	<uses-permission android:name="android.permission.INTERNET"/>
 	<uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
 	<application
 		android:icon="@drawable/icon"
 		android:label="کد هاب"
@@ -32,6 +33,10 @@
 		<service android:name=".starter">
 		</service>
 		<receiver android:name=".starter$starter_BR">
+		</receiver>
+		<service android:name=".httputils2service">
+		</service>
+		<receiver android:name=".httputils2service$httputils2service_BR">
 		</receiver>
 	</application>
 </manifest>

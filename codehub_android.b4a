@@ -38,10 +38,12 @@ FileGroup9=Fonts
 Group=Default Group
 Library1=core
 Library2=clipboard
+Library3=okhttputils2
+Library4=json
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
 Module1=Starter
 NumberOfFiles=18
-NumberOfLibraries=2
+NumberOfLibraries=4
 NumberOfModules=1
 Version=9.9
 @EndOfDesignText@
@@ -93,26 +95,16 @@ Sub Activity_Pause (UserClosed As Boolean)
 
 End Sub
 
-Sub Send_Snippet
-	' Sending the snippet
-	' Returning the link
-	Dim address As String
-	address = ""
-	Return address
-End Sub
-
 Sub btn_submit_Click
-	If edt_title.Text == "" Or edt_script.Text == "" Then
-		ToastMessageShow("لطفا هر دو فیلد عنوان و اسکریپت را پر کنید", False)
+	If edt_title.Text == "" Or edt_script.Text == "" Or ac_language.Text == "" Then
+		ToastMessageShow("تمام فیلد ها را پر کنید", False)
 	Else
 		ToastMessageShow("درخواست شما در حال انجام است", False)
 		Dim snippet_clip As BClipboard
-		Dim snippet_link As String
-		If Send_Snippet <> "" Then
-			snippet_link = Send_Snippet
-			snippet_clip.setText(snippet_link)
-		Else
-			ToastMessageShow("خطا در برقراری ارتباط", False)
-		End If
+		
+	    ' Making new connection
+		' Parsing data to JSON
+		' Retriveing back the link in snippet_clip.settext()
+		
 	End If
 End Sub
