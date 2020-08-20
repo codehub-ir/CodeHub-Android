@@ -51,7 +51,7 @@ Version=9.9
 #Region Project Attributes
 	#ApplicationLabel: کد هاب
 	#VersionCode: 1
-	#VersionName: v0.5
+	#VersionName: v1.0
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
@@ -103,15 +103,27 @@ Sub btn_submit_Click
 		Dim json As JSONGenerator
 		json.Initialize(data)
 		
-		Log(data)
-		Log(json.ToString)
-		
 		Dim connection As HttpJob
 		connection.Initialize("Connection", Me)
 		connection.PostString("http://codehub.pythonanywhere.com/api/v1/snippet/", json.ToString)
-		connection.GetRequest.SetHeader("Content-Type", "application/json")
-		ToastMessageShow("Created",True)
-		
+		connection.GetRequest.SetContentType("application/json")
+		Wait For (connection) JobDone(connection As HttpJob)
+		If connection.Success Then
+			Dim response As String = connection.GetString
+			Dim jsn_response As JSONParser
+			jsn_response.Initialize(response)
+			
+			Dim dta As Map
+			dta = jsn_response.NextObject
+			
+			Dim link As String = dta.Get("link")
+			Dim SID As String = dta.Get("SID")
+			
+			snippet_clip.setText(link)
+			ToastMessageShow("درخواست انجام شد. اسنیپ آیدی "&SID&" در کلیپبورد ذخیره شد", True)
+		Else
+			ToastMessageShow("خطا در برقراری ارتباط", False)
+		End If		
 	End If
 End Sub
 
