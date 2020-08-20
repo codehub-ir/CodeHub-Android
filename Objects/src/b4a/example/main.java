@@ -349,83 +349,109 @@ vis = vis | (main.mostCurrent != null);
 return vis;}
 public static String  _activity_create(boolean _firsttime) throws Exception{
 String[] _languages = null;
- //BA.debugLineNum = 27;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
- //BA.debugLineNum = 29;BA.debugLine="Activity.LoadLayout(\"light_layout_v05\")";
+anywheresoftware.b4a.phone.Phone _orientation = null;
+ //BA.debugLineNum = 29;BA.debugLine="Sub Activity_Create(FirstTime As Boolean)";
+ //BA.debugLineNum = 30;BA.debugLine="Activity.LoadLayout(\"light_layout_v05\")";
 mostCurrent._activity.LoadLayout("light_layout_v05",mostCurrent.activityBA);
- //BA.debugLineNum = 30;BA.debugLine="Dim languages () As String";
+ //BA.debugLineNum = 32;BA.debugLine="Dim languages () As String";
 _languages = new String[(int) (0)];
 java.util.Arrays.fill(_languages,"");
- //BA.debugLineNum = 31;BA.debugLine="languages = Array As String (\"python\", \"php\", \"go";
+ //BA.debugLineNum = 33;BA.debugLine="languages = Array As String (\"python\", \"php\", \"go";
 _languages = new String[]{"python","php","go","html","java"};
- //BA.debugLineNum = 32;BA.debugLine="ac_language.SetItems(languages)";
+ //BA.debugLineNum = 34;BA.debugLine="ac_language.SetItems(languages)";
 mostCurrent._ac_language.SetItems(processBA,anywheresoftware.b4a.keywords.Common.ArrayToList(_languages));
- //BA.debugLineNum = 33;BA.debugLine="End Sub";
-return "";
-}
-public static String  _activity_pause(boolean _userclosed) throws Exception{
- //BA.debugLineNum = 39;BA.debugLine="Sub Activity_Pause (UserClosed As Boolean)";
- //BA.debugLineNum = 41;BA.debugLine="End Sub";
-return "";
-}
-public static String  _activity_resume() throws Exception{
- //BA.debugLineNum = 35;BA.debugLine="Sub Activity_Resume";
- //BA.debugLineNum = 37;BA.debugLine="End Sub";
+ //BA.debugLineNum = 36;BA.debugLine="Dim orientation As Phone";
+_orientation = new anywheresoftware.b4a.phone.Phone();
+ //BA.debugLineNum = 37;BA.debugLine="orientation.SetScreenOrientation(1)";
+_orientation.SetScreenOrientation(processBA,(int) (1));
+ //BA.debugLineNum = 38;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btn_clear_click() throws Exception{
- //BA.debugLineNum = 69;BA.debugLine="Sub btn_clear_Click";
- //BA.debugLineNum = 70;BA.debugLine="Clearify";
+ //BA.debugLineNum = 81;BA.debugLine="Sub btn_clear_Click";
+ //BA.debugLineNum = 82;BA.debugLine="Clearify";
 _clearify();
- //BA.debugLineNum = 71;BA.debugLine="ToastMessageShow(\"فیلد ها خالی شد\", False)";
+ //BA.debugLineNum = 83;BA.debugLine="ToastMessageShow(\"فیلد ها خالی شد\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("فیلد ها خالی شد"),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 72;BA.debugLine="End Sub";
+ //BA.debugLineNum = 84;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btn_github_click() throws Exception{
- //BA.debugLineNum = 74;BA.debugLine="Sub btn_github_Click";
- //BA.debugLineNum = 76;BA.debugLine="End Sub";
+anywheresoftware.b4a.phone.Phone.PhoneIntents _phone = null;
+ //BA.debugLineNum = 86;BA.debugLine="Sub btn_github_Click";
+ //BA.debugLineNum = 87;BA.debugLine="Dim phone As PhoneIntents";
+_phone = new anywheresoftware.b4a.phone.Phone.PhoneIntents();
+ //BA.debugLineNum = 88;BA.debugLine="StartActivity(phone.OpenBrowser(\"https://github.c";
+anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(_phone.OpenBrowser("https://github.com/lnxpy/codehub-android")));
+ //BA.debugLineNum = 89;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btn_submit_click() throws Exception{
 b4a.util.BClipboard _snippet_clip = null;
- //BA.debugLineNum = 43;BA.debugLine="Sub btn_submit_Click";
- //BA.debugLineNum = 44;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
+anywheresoftware.b4a.objects.collections.Map _data = null;
+anywheresoftware.b4a.objects.collections.JSONParser.JSONGenerator _json = null;
+b4a.example.httpjob _connection = null;
+ //BA.debugLineNum = 40;BA.debugLine="Sub btn_submit_Click";
+ //BA.debugLineNum = 41;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
 if ((mostCurrent._edt_title.getText()).equals("") || (mostCurrent._edt_script.getText()).equals("") || (mostCurrent._ac_language.getText()).equals("")) { 
- //BA.debugLineNum = 45;BA.debugLine="ToastMessageShow(\"تمام فیلد ها را پر کنید\", Fals";
+ //BA.debugLineNum = 42;BA.debugLine="ToastMessageShow(\"تمام فیلد ها را پر کنید\", Fals";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("تمام فیلد ها را پر کنید"),anywheresoftware.b4a.keywords.Common.False);
  }else {
- //BA.debugLineNum = 47;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
+ //BA.debugLineNum = 44;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("درخواست شما در حال انجام است"),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 48;BA.debugLine="Dim snippet_clip As BClipboard";
+ //BA.debugLineNum = 45;BA.debugLine="Dim snippet_clip As BClipboard";
 _snippet_clip = new b4a.util.BClipboard();
+ //BA.debugLineNum = 51;BA.debugLine="Dim data As Map = CreateMap(\"title\": edt_title.T";
+_data = new anywheresoftware.b4a.objects.collections.Map();
+_data = anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("title"),(Object)(mostCurrent._edt_title.getText()),(Object)("detail"),(Object)(mostCurrent._edt_detail.getText()),(Object)("script"),(Object)(mostCurrent._edt_script.getText()),(Object)("language"),(Object)(mostCurrent._ac_language.getText())});
+ //BA.debugLineNum = 53;BA.debugLine="Dim json As JSONGenerator";
+_json = new anywheresoftware.b4a.objects.collections.JSONParser.JSONGenerator();
+ //BA.debugLineNum = 54;BA.debugLine="json.Initialize(data)";
+_json.Initialize(_data);
+ //BA.debugLineNum = 56;BA.debugLine="Log(data)";
+anywheresoftware.b4a.keywords.Common.LogImpl("6196624",BA.ObjectToString(_data),0);
+ //BA.debugLineNum = 57;BA.debugLine="Log(json.ToString)";
+anywheresoftware.b4a.keywords.Common.LogImpl("6196625",_json.ToString(),0);
+ //BA.debugLineNum = 59;BA.debugLine="Dim connection As HttpJob";
+_connection = new b4a.example.httpjob();
+ //BA.debugLineNum = 60;BA.debugLine="connection.Initialize(\"Connection\", Me)";
+_connection._initialize /*String*/ (processBA,"Connection",main.getObject());
+ //BA.debugLineNum = 61;BA.debugLine="connection.PostString(\"http://codehub.pythonanyw";
+_connection._poststring /*String*/ ("http://codehub.pythonanywhere.com/api/v1/snippet/",_json.ToString());
+ //BA.debugLineNum = 62;BA.debugLine="connection.GetRequest.SetHeader(\"Content-Type\",";
+_connection._getrequest /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ ().SetHeader("Content-Type","application/json");
+ //BA.debugLineNum = 63;BA.debugLine="connection.Release";
+_connection._release /*String*/ ();
+ //BA.debugLineNum = 64;BA.debugLine="ToastMessageShow(\"Created\",True)";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Created"),anywheresoftware.b4a.keywords.Common.True);
  };
- //BA.debugLineNum = 55;BA.debugLine="End Sub";
-return "";
-}
-public static String  _clearify() throws Exception{
- //BA.debugLineNum = 57;BA.debugLine="Sub Clearify";
- //BA.debugLineNum = 58;BA.debugLine="edt_title.Text = \"\"";
-mostCurrent._edt_title.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 59;BA.debugLine="edt_detail.Text = \"\"";
-mostCurrent._edt_detail.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 60;BA.debugLine="edt_script.Text = \"\"";
-mostCurrent._edt_script.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 61;BA.debugLine="ac_language.Text = \"\"";
-mostCurrent._ac_language.setText(BA.ObjectToCharSequence(""));
  //BA.debugLineNum = 67;BA.debugLine="End Sub";
 return "";
 }
+public static String  _clearify() throws Exception{
+ //BA.debugLineNum = 69;BA.debugLine="Sub Clearify";
+ //BA.debugLineNum = 70;BA.debugLine="edt_title.Text = \"\"";
+mostCurrent._edt_title.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 71;BA.debugLine="edt_detail.Text = \"\"";
+mostCurrent._edt_detail.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 72;BA.debugLine="edt_script.Text = \"\"";
+mostCurrent._edt_script.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 73;BA.debugLine="ac_language.Text = \"\"";
+mostCurrent._ac_language.setText(BA.ObjectToCharSequence(""));
+ //BA.debugLineNum = 79;BA.debugLine="End Sub";
+return "";
+}
 public static String  _globals() throws Exception{
- //BA.debugLineNum = 20;BA.debugLine="Sub Globals";
- //BA.debugLineNum = 21;BA.debugLine="Private edt_detail As EditText";
+ //BA.debugLineNum = 22;BA.debugLine="Sub Globals";
+ //BA.debugLineNum = 23;BA.debugLine="Private edt_detail As EditText";
 mostCurrent._edt_detail = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 22;BA.debugLine="Private edt_script As EditText";
+ //BA.debugLineNum = 24;BA.debugLine="Private edt_script As EditText";
 mostCurrent._edt_script = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 23;BA.debugLine="Private edt_title As EditText";
+ //BA.debugLineNum = 25;BA.debugLine="Private edt_title As EditText";
 mostCurrent._edt_title = new anywheresoftware.b4a.objects.EditTextWrapper();
- //BA.debugLineNum = 24;BA.debugLine="Private ac_language As AutoCompleteEditText";
+ //BA.debugLineNum = 26;BA.debugLine="Private ac_language As AutoCompleteEditText";
 mostCurrent._ac_language = new anywheresoftware.b4a.objects.AutoCompleteEditTextWrapper();
- //BA.debugLineNum = 25;BA.debugLine="End Sub";
+ //BA.debugLineNum = 27;BA.debugLine="End Sub";
 return "";
 }
 
@@ -443,8 +469,8 @@ httputils2service._process_globals();
 		}
     }
 }public static String  _process_globals() throws Exception{
- //BA.debugLineNum = 14;BA.debugLine="Sub Process_Globals";
- //BA.debugLineNum = 18;BA.debugLine="End Sub";
+ //BA.debugLineNum = 16;BA.debugLine="Sub Process_Globals";
+ //BA.debugLineNum = 20;BA.debugLine="End Sub";
 return "";
 }
 }
