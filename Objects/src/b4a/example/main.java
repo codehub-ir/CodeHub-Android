@@ -368,77 +368,176 @@ _orientation.SetScreenOrientation(processBA,(int) (1));
 return "";
 }
 public static String  _btn_clear_click() throws Exception{
- //BA.debugLineNum = 81;BA.debugLine="Sub btn_clear_Click";
- //BA.debugLineNum = 82;BA.debugLine="Clearify";
+ //BA.debugLineNum = 87;BA.debugLine="Sub btn_clear_Click";
+ //BA.debugLineNum = 88;BA.debugLine="Clearify";
 _clearify();
- //BA.debugLineNum = 83;BA.debugLine="ToastMessageShow(\"فیلد ها خالی شد\", False)";
+ //BA.debugLineNum = 89;BA.debugLine="ToastMessageShow(\"فیلد ها خالی شد\", False)";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("فیلد ها خالی شد"),anywheresoftware.b4a.keywords.Common.False);
- //BA.debugLineNum = 84;BA.debugLine="End Sub";
+ //BA.debugLineNum = 90;BA.debugLine="End Sub";
 return "";
 }
 public static String  _btn_github_click() throws Exception{
 anywheresoftware.b4a.phone.Phone.PhoneIntents _phone = null;
- //BA.debugLineNum = 86;BA.debugLine="Sub btn_github_Click";
- //BA.debugLineNum = 87;BA.debugLine="Dim phone As PhoneIntents";
+ //BA.debugLineNum = 92;BA.debugLine="Sub btn_github_Click";
+ //BA.debugLineNum = 93;BA.debugLine="Dim phone As PhoneIntents";
 _phone = new anywheresoftware.b4a.phone.Phone.PhoneIntents();
- //BA.debugLineNum = 88;BA.debugLine="StartActivity(phone.OpenBrowser(\"https://github.c";
+ //BA.debugLineNum = 94;BA.debugLine="StartActivity(phone.OpenBrowser(\"https://github.c";
 anywheresoftware.b4a.keywords.Common.StartActivity(processBA,(Object)(_phone.OpenBrowser("https://github.com/lnxpy/codehub-android")));
- //BA.debugLineNum = 89;BA.debugLine="End Sub";
+ //BA.debugLineNum = 95;BA.debugLine="End Sub";
 return "";
 }
-public static String  _btn_submit_click() throws Exception{
+public static void  _btn_submit_click() throws Exception{
+ResumableSub_btn_submit_Click rsub = new ResumableSub_btn_submit_Click(null);
+rsub.resume(processBA, null);
+}
+public static class ResumableSub_btn_submit_Click extends BA.ResumableSub {
+public ResumableSub_btn_submit_Click(b4a.example.main parent) {
+this.parent = parent;
+}
+b4a.example.main parent;
 b4a.util.BClipboard _snippet_clip = null;
 anywheresoftware.b4a.objects.collections.Map _data = null;
 anywheresoftware.b4a.objects.collections.JSONParser.JSONGenerator _json = null;
 b4a.example.httpjob _connection = null;
- //BA.debugLineNum = 40;BA.debugLine="Sub btn_submit_Click";
+String _response = "";
+anywheresoftware.b4a.objects.collections.JSONParser _jsn_response = null;
+anywheresoftware.b4a.objects.collections.Map _dta = null;
+String _link = "";
+String _sid = "";
+
+@Override
+public void resume(BA ba, Object[] result) throws Exception{
+
+    while (true) {
+        switch (state) {
+            case -1:
+return;
+
+case 0:
+//C
+this.state = 1;
  //BA.debugLineNum = 41;BA.debugLine="If edt_title.Text == \"\" Or edt_script.Text == \"\"";
-if ((mostCurrent._edt_title.getText()).equals("") || (mostCurrent._edt_script.getText()).equals("") || (mostCurrent._ac_language.getText()).equals("")) { 
+if (true) break;
+
+case 1:
+//if
+this.state = 12;
+if ((parent.mostCurrent._edt_title.getText()).equals("") || (parent.mostCurrent._edt_script.getText()).equals("") || (parent.mostCurrent._ac_language.getText()).equals("")) { 
+this.state = 3;
+}else {
+this.state = 5;
+}if (true) break;
+
+case 3:
+//C
+this.state = 12;
  //BA.debugLineNum = 42;BA.debugLine="ToastMessageShow(\"تمام فیلد ها را پر کنید\", Fals";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("تمام فیلد ها را پر کنید"),anywheresoftware.b4a.keywords.Common.False);
- }else {
+ if (true) break;
+
+case 5:
+//C
+this.state = 6;
  //BA.debugLineNum = 44;BA.debugLine="ToastMessageShow(\"درخواست شما در حال انجام است\",";
 anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("درخواست شما در حال انجام است"),anywheresoftware.b4a.keywords.Common.False);
  //BA.debugLineNum = 45;BA.debugLine="Dim snippet_clip As BClipboard";
 _snippet_clip = new b4a.util.BClipboard();
  //BA.debugLineNum = 51;BA.debugLine="Dim data As Map = CreateMap(\"title\": edt_title.T";
 _data = new anywheresoftware.b4a.objects.collections.Map();
-_data = anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("title"),(Object)(mostCurrent._edt_title.getText()),(Object)("detail"),(Object)(mostCurrent._edt_detail.getText()),(Object)("script"),(Object)(mostCurrent._edt_script.getText()),(Object)("language"),(Object)(mostCurrent._ac_language.getText())});
+_data = anywheresoftware.b4a.keywords.Common.createMap(new Object[] {(Object)("title"),(Object)(parent.mostCurrent._edt_title.getText()),(Object)("detail"),(Object)(parent.mostCurrent._edt_detail.getText()),(Object)("script"),(Object)(parent.mostCurrent._edt_script.getText()),(Object)("language"),(Object)(parent.mostCurrent._ac_language.getText())});
  //BA.debugLineNum = 53;BA.debugLine="Dim json As JSONGenerator";
 _json = new anywheresoftware.b4a.objects.collections.JSONParser.JSONGenerator();
  //BA.debugLineNum = 54;BA.debugLine="json.Initialize(data)";
 _json.Initialize(_data);
- //BA.debugLineNum = 56;BA.debugLine="Log(data)";
-anywheresoftware.b4a.keywords.Common.LogImpl("6196624",BA.ObjectToString(_data),0);
- //BA.debugLineNum = 57;BA.debugLine="Log(json.ToString)";
-anywheresoftware.b4a.keywords.Common.LogImpl("6196625",_json.ToString(),0);
- //BA.debugLineNum = 59;BA.debugLine="Dim connection As HttpJob";
+ //BA.debugLineNum = 56;BA.debugLine="Dim connection As HttpJob";
 _connection = new b4a.example.httpjob();
- //BA.debugLineNum = 60;BA.debugLine="connection.Initialize(\"Connection\", Me)";
+ //BA.debugLineNum = 57;BA.debugLine="connection.Initialize(\"Connection\", Me)";
 _connection._initialize /*String*/ (processBA,"Connection",main.getObject());
- //BA.debugLineNum = 61;BA.debugLine="connection.PostString(\"http://codehub.pythonanyw";
+ //BA.debugLineNum = 58;BA.debugLine="connection.PostString(\"http://codehub.pythonanyw";
 _connection._poststring /*String*/ ("http://codehub.pythonanywhere.com/api/v1/snippet/",_json.ToString());
- //BA.debugLineNum = 62;BA.debugLine="connection.GetRequest.SetHeader(\"Content-Type\",";
-_connection._getrequest /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ ().SetHeader("Content-Type","application/json");
- //BA.debugLineNum = 63;BA.debugLine="connection.Release";
-_connection._release /*String*/ ();
- //BA.debugLineNum = 64;BA.debugLine="ToastMessageShow(\"Created\",True)";
-anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("Created"),anywheresoftware.b4a.keywords.Common.True);
- };
- //BA.debugLineNum = 67;BA.debugLine="End Sub";
-return "";
+ //BA.debugLineNum = 59;BA.debugLine="connection.GetRequest.SetContentType(\"applicatio";
+_connection._getrequest /*anywheresoftware.b4h.okhttp.OkHttpClientWrapper.OkHttpRequest*/ ().SetContentType("application/json");
+ //BA.debugLineNum = 60;BA.debugLine="Wait For (connection) JobDone(connection As Http";
+anywheresoftware.b4a.keywords.Common.WaitFor("jobdone", processBA, this, (Object)(_connection));
+this.state = 13;
+return;
+case 13:
+//C
+this.state = 6;
+_connection = (b4a.example.httpjob) result[0];
+;
+ //BA.debugLineNum = 61;BA.debugLine="If connection.Success Then";
+if (true) break;
+
+case 6:
+//if
+this.state = 11;
+if (_connection._success /*boolean*/ ) { 
+this.state = 8;
+}else {
+this.state = 10;
+}if (true) break;
+
+case 8:
+//C
+this.state = 11;
+ //BA.debugLineNum = 62;BA.debugLine="Dim response As String = connection.GetString";
+_response = _connection._getstring /*String*/ ();
+ //BA.debugLineNum = 63;BA.debugLine="Dim jsn_response As JSONParser";
+_jsn_response = new anywheresoftware.b4a.objects.collections.JSONParser();
+ //BA.debugLineNum = 64;BA.debugLine="jsn_response.Initialize(response)";
+_jsn_response.Initialize(_response);
+ //BA.debugLineNum = 66;BA.debugLine="Dim dta As Map";
+_dta = new anywheresoftware.b4a.objects.collections.Map();
+ //BA.debugLineNum = 67;BA.debugLine="dta = jsn_response.NextObject";
+_dta = _jsn_response.NextObject();
+ //BA.debugLineNum = 69;BA.debugLine="Dim link As String = dta.Get(\"link\")";
+_link = BA.ObjectToString(_dta.Get((Object)("link")));
+ //BA.debugLineNum = 70;BA.debugLine="Dim SID As String = dta.Get(\"SID\")";
+_sid = BA.ObjectToString(_dta.Get((Object)("SID")));
+ //BA.debugLineNum = 72;BA.debugLine="snippet_clip.setText(link)";
+_snippet_clip.setText(mostCurrent.activityBA,_link);
+ //BA.debugLineNum = 73;BA.debugLine="ToastMessageShow(\"درخواست انجام شد. اسنیپ آیدی";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("درخواست انجام شد. اسنیپ آیدی "+_sid+" در کلیپبورد ذخیره شد"),anywheresoftware.b4a.keywords.Common.True);
+ if (true) break;
+
+case 10:
+//C
+this.state = 11;
+ //BA.debugLineNum = 75;BA.debugLine="ToastMessageShow(\"خطا در برقراری ارتباط\", False";
+anywheresoftware.b4a.keywords.Common.ToastMessageShow(BA.ObjectToCharSequence("خطا در برقراری ارتباط"),anywheresoftware.b4a.keywords.Common.False);
+ if (true) break;
+
+case 11:
+//C
+this.state = 12;
+;
+ if (true) break;
+
+case 12:
+//C
+this.state = -1;
+;
+ //BA.debugLineNum = 78;BA.debugLine="End Sub";
+if (true) break;
+
+            }
+        }
+    }
+}
+public static void  _jobdone(b4a.example.httpjob _connection) throws Exception{
 }
 public static String  _clearify() throws Exception{
- //BA.debugLineNum = 69;BA.debugLine="Sub Clearify";
- //BA.debugLineNum = 70;BA.debugLine="edt_title.Text = \"\"";
+ //BA.debugLineNum = 80;BA.debugLine="Sub Clearify";
+ //BA.debugLineNum = 81;BA.debugLine="edt_title.Text = \"\"";
 mostCurrent._edt_title.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 71;BA.debugLine="edt_detail.Text = \"\"";
+ //BA.debugLineNum = 82;BA.debugLine="edt_detail.Text = \"\"";
 mostCurrent._edt_detail.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 72;BA.debugLine="edt_script.Text = \"\"";
+ //BA.debugLineNum = 83;BA.debugLine="edt_script.Text = \"\"";
 mostCurrent._edt_script.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 73;BA.debugLine="ac_language.Text = \"\"";
+ //BA.debugLineNum = 84;BA.debugLine="ac_language.Text = \"\"";
 mostCurrent._ac_language.setText(BA.ObjectToCharSequence(""));
- //BA.debugLineNum = 79;BA.debugLine="End Sub";
+ //BA.debugLineNum = 85;BA.debugLine="End Sub";
 return "";
 }
 public static String  _globals() throws Exception{
