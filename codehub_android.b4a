@@ -40,19 +40,22 @@ Library1=core
 Library2=clipboard
 Library3=okhttputils2
 Library4=json
+Library5=phone
 ManifestCode='This code will be applied to the manifest file during compilation.~\n~'You do not need to modify it in most cases.~\n~'See this link for for more information: https://www.b4x.com/forum/showthread.php?p=78136~\n~AddManifestText(~\n~<uses-sdk android:minSdkVersion="5" android:targetSdkVersion="28"/>~\n~<supports-screens android:largeScreens="true" ~\n~    android:normalScreens="true" ~\n~    android:smallScreens="true" ~\n~    android:anyDensity="true"/>)~\n~SetApplicationAttribute(android:icon, "@drawable/icon")~\n~SetApplicationAttribute(android:label, "$LABEL$")~\n~CreateResourceFromFile(Macro, Themes.DarkTheme)~\n~'End of default text.~\n~
 Module1=Starter
 NumberOfFiles=18
-NumberOfLibraries=4
+NumberOfLibraries=5
 NumberOfModules=1
 Version=9.9
 @EndOfDesignText@
+#Region Project Attributes
 	#ApplicationLabel: کد هاب
 	#VersionCode: 1
 	#VersionName: v0.5
 	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
+	#BridgeLogger: True
 #End Region
 
 #Region  Activity Attributes 
@@ -74,19 +77,14 @@ Sub Globals
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
-	'Do not forget to load the layout file created with the visual designer. For example:
 	Activity.LoadLayout("light_layout_v05")
+	
 	Dim languages () As String
 	languages = Array As String ("python", "php", "go", "html", "java")
 	ac_language.SetItems(languages)
-End Sub
-
-Sub Activity_Resume
-
-End Sub
-
-Sub Activity_Pause (UserClosed As Boolean)
-
+	
+	Dim orientation As Phone
+	orientation.SetScreenOrientation(1)
 End Sub
 
 Sub btn_submit_Click
@@ -99,6 +97,20 @@ Sub btn_submit_Click
 	    ' Making new connection
 		' Parsing data to JSON
 		' Retriveing back the link in snippet_clip.settext()
+
+		Dim data As Map = CreateMap("title": edt_title.Text, "detail": edt_detail.Text, "script": edt_script.Text, "language": ac_language.Text)
+		
+		Dim json As JSONGenerator
+		json.Initialize(data)
+		
+		Log(data)
+		Log(json.ToString)
+		
+		Dim connection As HttpJob
+		connection.Initialize("Connection", Me)
+		connection.PostString("http://codehub.pythonanywhere.com/api/v1/snippet/", json.ToString)
+		connection.GetRequest.SetHeader("Content-Type", "application/json")
+		ToastMessageShow("Created",True)
 		
 	End If
 End Sub
@@ -108,11 +120,6 @@ Sub Clearify
 	edt_detail.Text = ""
 	edt_script.Text = ""
 	ac_language.Text = ""
-'	In here a bug is living..
-'	Dim view As Object
-'	For Each view In edittext_views
-'		view
-'	Next
 End Sub
 
 Sub btn_clear_Click
@@ -121,5 +128,6 @@ Sub btn_clear_Click
 End Sub
 
 Sub btn_github_Click
-	' Openning the github repo of CodeHub on default browser
+	Dim phone As PhoneIntents
+	StartActivity(phone.OpenBrowser("https://github.com/lnxpy/codehub-android"))
 End Sub

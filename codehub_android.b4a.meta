@@ -4,6 +4,6 @@ ModuleBreakpoints0=
 ModuleBreakpoints1=
 ModuleClosedNodes0=
 ModuleClosedNodes1=1
-NavigationStack=Main,Activity_Pause,46,0,Main,Process_Globals,15,0,Main,btn_submit_Click,45,6,Main,Activity_Create,35,6,Main,btn_clear_Click,66,6,Main,btn_github_Click,72,6,Main,Clearify,63,6,Main,Globals,23,6,Visual Designer,light_layout_v05.bal,-100,6
+NavigationStack=Main,Process_Globals,15,0,Main,btn_clear_Click,66,6,Visual Designer,light_layout_v05.bal,-100,6,Main,btn_github_Click,75,6,Main,Globals,21,6,Main,btn_submit_Click,56,6,Main,Clearify,71,6,Main,Activity_Create,35,6
 SelectedBuild=0
 VisibleModules=
