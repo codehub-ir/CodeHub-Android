@@ -52,7 +52,6 @@ Version=9.9
 	#ApplicationLabel: کد هاب
 	#VersionCode: 1
 	#VersionName: v1.0
-	'SupportedOrientations possible values: unspecified, landscape or portrait.
 	#SupportedOrientations: unspecified
 	#CanInstallToExternalStorage: False
 	#BridgeLogger: True
@@ -64,9 +63,7 @@ Version=9.9
 #End Region
 
 Sub Process_Globals
-	'These global variables will be declared once when the application starts.
-	'These variables can be accessed from all modules.
-
+	' all global vars should be here..
 End Sub
 
 Sub Globals
@@ -77,12 +74,15 @@ Sub Globals
 End Sub
 
 Sub Activity_Create(FirstTime As Boolean)
+	' layout v0.5
 	Activity.LoadLayout("light_layout_v05")
 	
+	' available languages on AutoCompleteEditText(ac_language)
 	Dim languages () As String
 	languages = Array As String ("python", "php", "go", "html", "java")
 	ac_language.SetItems(languages)
 	
+	' v0.1 fixed orientation
 	Dim orientation As Phone
 	orientation.SetScreenOrientation(1)
 End Sub
@@ -93,10 +93,6 @@ Sub btn_submit_Click
 	Else
 		ToastMessageShow("درخواست شما در حال انجام است", False)
 		Dim snippet_clip As BClipboard
-		
-	    ' Making new connection
-		' Parsing data to JSON
-		' Retriveing back the link in snippet_clip.settext()
 
 		Dim data As Map = CreateMap("title": edt_title.Text, "detail": edt_detail.Text, "script": edt_script.Text, "language": ac_language.Text)
 		
